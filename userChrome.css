@@ -150,12 +150,13 @@
    background-color: var(--identity-btn-hover-color) !important;
 }
 
-/* Track protection icon */
+/* Tracking protection icon */
 #tracking-protection-icon-container {
    border-radius: 16px !important;
-   height: 29px !important;
+   height: 26px !important;
    margin: auto !important;
-   margin-left: 3px !important;
+   margin-left: 2px !important;
+   margin-right: -2px !important;
 }
 
 #tracking-protection-icon-container:hover {
@@ -165,7 +166,8 @@
 /* Star button */
 #star-button-box {
    border-radius: 16px !important;
-   margin-right: 2px !important;
+   margin-right: 1px !important;
+   height: 28px !important;
 }
 
 #star-button-box {
