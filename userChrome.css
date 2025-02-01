@@ -232,6 +232,20 @@ toolbarbutton:hover {
    cursor: pointer;
 }
 
+/* allign lefmost toolbar button with sidebar */
+
+toolbarbutton {
+   margin-left: 2px !important;
+}
+
+#main-window[privatebrowsingmode="temporary"] .browser-toolbar {
+   margin-left: 5px !important;
+}
+
+#main-window:not([privatebrowsingmode="temporary"]) .browser-toolbar {
+   margin-left: -1px !important;
+}
+
 
 /* Show URL buttons on Hover */
 #nav-bar:not([customizing="true"])>#nav-bar-customization-target>#urlbar-container:not(:hover)>#urlbar:not([focused])>#urlbar-input-container>#page-action-buttons {
@@ -404,11 +418,6 @@ toolbar:not([customizing]) > #nav-bar-customization-target {
 #sidebar-box:not([positionend]):hover~#appcontent #statuspanel-label {
    margin-inline: 0px !important;
    border-left-style: solid !important;
-}
-
-/* hide private browsing titlebar indicator */
-#private-browsing-indicator-with-label {
-   display: none !important;
 }
 
 /* change color in private mode */

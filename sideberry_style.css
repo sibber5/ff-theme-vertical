@@ -1,5 +1,11 @@
-#root.root {--toolbar-bg: #202020;}
-#root.root {--frame-bg: #202020;}
+#root.root {
+    --toolbar-bg: #202020;
+}
+
+#root.root {
+    --frame-bg: #202020;
+}
+
 #root {
     --tabs-font: 11pt Segoe UI;
     --tabs-count-font: .625rem Segoe UI;
@@ -45,7 +51,7 @@
     }
 
     .BottomBar {
-				opacity: 100%;
+        opacity: 100%;
         transition: 100ms;
     }
 
