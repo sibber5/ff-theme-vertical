@@ -1,0 +1,158 @@
+#root.root {--toolbar-bg: #202020;}
+#root.root {--frame-bg: #202020;}
+#root {
+    --tabs-font: 11pt Segoe UI;
+    --tabs-count-font: .625rem Segoe UI;
+    --bookmarks-bookmark-font: .875rem Segoe UI;
+    --bookmarks-folder-font: 10pt Segoe UI;
+}
+
+.BottomBar {
+    opacity: 0%;
+}
+
+.NavigationBar .main-items {
+    opacity: 0%;
+}
+
+/* if sidebar width is <= 52px */
+@media screen and (max-width: 52px) {
+    #root {
+        --tabs-indent: unset;
+    }
+
+    .ScrollBox>.scroll-container {
+        overflow: hidden;
+    }
+
+    .Tab .audio {
+        top: 1px !important;
+        left: 15px !important;
+        transform: scale(.90);
+        transform: translateY(4px);
+        z-index: 99 !important;
+    }
+
+    .Tab .title {
+        visibility: collapse;
+    }
+}
+
+/* if sidebar width is >= 150px */
+@media screen and (min-width: 150px) {
+    .Tab .audio {
+        left: 24px !important;
+    }
+
+    .BottomBar {
+				opacity: 100%;
+        transition: 100ms;
+    }
+
+    .NavigationBar .main-items {
+        opacity: 100%;
+        transition: 70ms;
+    }
+}
+
+.PinnedTabsBar {
+    margin-left: 5px !important;
+}
+
+/*
+ * Add margins and rounding around tabs
+ */
+
+#root {
+    --tabs-height: 38px;
+    --tabs-pinned-height: var(--tabs-height);
+    --tabs-pinned-width: var(--tabs-width);
+}
+
+/* Background layer */
+
+.Tab {
+    padding: 2px 5px 2px 0px;
+    border-left: 5px solid transparent;
+}
+
+.Tab .lvl-wrapper:after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    width: 100%;
+    height: calc(100% - 5px);
+    border-radius: 4px;
+    z-index: -1;
+}
+
+@media (prefers-color-scheme:dark) {
+    #root {
+        --tabs-activated-bg: #383838 !important;
+        --tabs-bg-active: var(--tabs-activated-bg) !important;
+        --tabs-selected-fg: var(--tabs-activated-fg) !important;
+        --tabs-selected-bg: var(--tabs-activated-bg) !important;
+        --bg: #202020 !important;
+    }
+
+    .Tab[data-selected] .lvl-wrapper:after,
+    .Tab[data-active] .lvl-wrapper:after {
+        box-shadow: 0 0 1px rgba(128, 128, 142, 0.9), 0 0 4px rgba(128, 128, 142, 0.5);
+    }
+}
+
+/* NAV BAR */
+
+.NavigationBar {
+    padding: 0px 10px !important;
+    /*background-color: # !important;*/
+    margin-bottom: 5px;
+}
+
+/* Reset default styles */
+.Tab:hover,
+.Tab:active,
+.Tab[data-active],
+.Tab[data-active]:active,
+.Tab[data-selected],
+.Tab[data-selected]:hover,
+.Tab[data-selected]:active {
+    background: transparent;
+}
+
+/* Reapply styles */
+
+.Tab .title {
+    overflow: hidden !important;
+}
+
+.Tab:hover .lvl-wrapper:after {
+    background-color: var(--tabs-bg-hover);
+}
+
+.Tab:active .lvl-wrapper:after,
+.Tab[data-active]:active .lvl-wrapper:after {
+    background-color: var(--tabs-bg-active);
+}
+
+.Tab[data-active] .lvl-wrapper:after {
+    background-color: var(--tabs-activated-bg);
+}
+
+
+.Tab[data-selected] .lvl-wrapper:after {
+    background-color: var(--tabs-selected-bg);
+}
+
+.Tab .fav {
+    margin: 0 10px !important;
+}
+
+.Tab .audio {
+    background-color: transparent !important;
+}
+
+.new-tab-btn {
+    margin: 2px 5px;
+    opacity: 85%;
+}
