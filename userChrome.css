@@ -48,14 +48,17 @@
    }
 }
 
-/* Suppress Connecting/Waiting/Reading/Transerring */
-/* #statuspanel[type="status"] {
-   display: none !important;
- } */
-/* Suppress Link Destination Overlay */
-/* #statuspanel[type="overLink"] {
-   display: none !important;
- } */
+/* Reduce flashing on load */
+#sidebar,
+#sidebar-box,
+#sidebar-header,
+#sidebar-content,
+#webextpanels-window,
+#webext-panels-browser {
+   background: var(--bg) !important;
+   background-color: var(--bg) !important;
+   color: var(--bg) !important;
+}
 
 /* URL BAR */
 #urlbar {
@@ -332,6 +335,8 @@ toolbar:not([customizing]) > #nav-bar-customization-target {
 /* AUTO HIDE SIDE BAR */
 
 #sidebar-box {
+   color: var(--bg) !important;
+   background-color: var(--bg) !important;
    --uc-sidebar-width: 50px;
    --uc-sidebar-hover-width: 300px;
    --uc-autohide-sidebar-delay: 1ms;
@@ -371,9 +376,13 @@ toolbar:not([customizing]) > #nav-bar-customization-target {
 #sidebar-header {
    overflow: hidden;
    color: var(--bg) !important;
+   background-color: var(--bg) !important;
 }
 
 #sidebar {
+   color: var(--bg) !important;
+   background-color: var(--bg) !important;
+   padding-top: 4px;
    transition: min-width 115ms linear var(--uc-autohide-sidebar-delay) !important;
    min-width: var(--uc-sidebar-width) !important;
    will-change: min-width;
