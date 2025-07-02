@@ -1,4 +1,13 @@
+/* Based on https://github.com/christorange/VerticalFox/blob/7eca918ef2bd70148f41b95f5bb917150e1094a2/windows/userChrome.css and modified
+   Licensed under MIT Copyright (c) 2024, 2025 Christol Yu, sibber (GitHub: sibber5) */
+
 @import url(hide_tabs_toolbar_v2.css);
+@import url(autohide_sidebar.css);
+
+:root {
+   --urlbar-height: 35px;
+   --urlbar-buttons-height: calc(var(--urlbar-height) - 9px);
+}
 
 @media (prefers-color-scheme:dark) {
    :root {
@@ -9,7 +18,6 @@
       --urlbar-border-top: #000;
       --urldrop-bg: #111111;
       --urlbar-border-bottom: #404040;
-      --urlbar-height: 35px;
       --urlbar-outline: #404040;
 
       --fullscreen-warn: rgb(25, 25, 25);
@@ -20,7 +28,7 @@
       --button-bgcolor: rgba(117, 117, 117, 0.9) !important;
       --toolbarbutton-icon-fill-opacity: 0.8 !important;
       --arrowpanel-border-color: rgb(55, 55, 55) !important;
-      --identity-btn-hover-color: rgba(117, 117, 117) !important;
+      --identity-btn-hover-color: rgba(255, 255, 255, 0.22) !important;
 
       --dark-menu-background-color: rgba(34, 34, 36, .5) !important;
       --dark-menu-border-color: rgb(55, 55, 55) !important;
@@ -31,6 +39,7 @@
 @media (prefers-color-scheme:light) {
    :root {
       --bg: #f1f5f9;
+      --private-bg: #f1f5f9;
 
       --urlbar-bg: #cbd5e1;
       --urlbar-border-top: #9ca3af;
@@ -137,12 +146,42 @@
    border-bottom-right-radius: 0px !important;
 } */
 
-/* Idendity icon button */
-#identity-icon-box.identity-box-button {
-   margin: 3px 0 3px 3px;
+/* urlbar identity box buttons (lock/permissions/etc buttons) + addon page action buttons */
+.urlbar-addon-page-action,
+.identity-box-button {
+   margin: 1px 0 1px 1px;
+   border-radius: 16px !important;
+   height: var(--urlbar-buttons-height) !important;
+   opacity: 0.8
+}
+
+.urlbar-addon-page-action:hover,
+.identity-box-button:hover {
+   cursor: pointer;
+   /* background-color: var(--identity-btn-hover-color) !important; */
+}
+
+.urlbar-icon {
+   /* for some reason theres an extra 1px margin on top, so offset it so that the icon is centered */
+   margin-top: -1px !important;
+}
+
+/* Search mode switcher */
+#urlbar-searchmode-switcher {
+   margin: 1px 5px 1px 1px !important;
    border-radius: 14px !important;
    background-color: var(--bg) !important;
-   opacity: 0.8
+   /* opacity: 0.8 */
+}
+
+#urlbar-searchmode-switcher:hover {
+   cursor: pointer;
+   background-color: var(--identity-btn-hover-color) !important;
+}
+
+/* identity box */
+#identity-icon-box.identity-box-button {
+   background-color: var(--bg) !important;
 }
 
 #identity-icon-box.identity-box-button:hover {
@@ -150,24 +189,32 @@
    background-color: var(--identity-btn-hover-color) !important;
 }
 
+#identity-icon-box.identity-box-button:hover #identity-icon-label {
+   cursor: pointer !important;
+}
+
 /* Tracking protection icon */
 #tracking-protection-icon-container {
+   background-color: var(--bg) !important;
    border-radius: 16px !important;
-   height: 26px !important;
+   height: var(--urlbar-buttons-height) !important;
    margin: auto !important;
-   margin-left: 2px !important;
-   margin-right: -2px !important;
+   margin-left: 1px !important;
+   margin-right: 1px !important;
 }
 
 #tracking-protection-icon-container:hover {
    cursor: pointer !important;
+   background-color: var(--identity-btn-hover-color) !important;
 }
 
 /* Star button */
 #star-button-box {
    border-radius: 16px !important;
+   height: var(--urlbar-buttons-height) !important;
+   margin: auto !important;
+   margin-left: 1px !important;
    margin-right: 1px !important;
-   height: 28px !important;
 }
 
 #star-button-box {
@@ -332,103 +379,6 @@ toolbar:not([customizing]) > #nav-bar-customization-target {
 .tabbrowser-tab[visuallyselected="true"] {
    visibility: collapse;
    height: 0px;
-}
-
-/* AUTO HIDE SIDE BAR */
-
-#sidebar-box {
-   color: var(--bg) !important;
-   background-color: var(--bg) !important;
-   --uc-sidebar-width: 50px;
-   --uc-sidebar-hover-width: 300px;
-   --uc-autohide-sidebar-delay: 1ms;
-   /* Waiting time before hiding sidebar */
-   position: relative;
-   min-width: var(--uc-sidebar-width) !important;
-   width: var(--uc-sidebar-width) !important;
-   max-width: var(--uc-sidebar-width) !important;
-   z-index: 100 !important;
-}
-
-#sidebar-box[positionend] {
-   direction: rtl;
-}
-
-#sidebar-box[positionend]>* {
-   direction: ltr;
-}
-
-#sidebar-box[positionend]:-moz-locale-dir(rtl) {
-   direction: ltr;
-}
-
-#sidebar-box[positionend]:-moz-locale-dir(rtl)>* {
-   direction: rtl;
-}
-
-/* HIDE SIDE BAR IN FULL SCREEN */
-#main-window[inFullscreen="true"] #sidebar-box {
-   --uc-sidebar-width: 0px;
-}
-
-#sidebar-splitter {
-   display: none;
-}
-
-#sidebar-header {
-   overflow: hidden;
-   color: var(--bg) !important;
-   background-color: var(--bg) !important;
-}
-
-#sidebar {
-   color: var(--bg) !important;
-   background-color: var(--bg) !important;
-   padding-top: 4px;
-   transition: min-width 115ms linear var(--uc-autohide-sidebar-delay) !important;
-   min-width: var(--uc-sidebar-width) !important;
-   will-change: min-width;
-}
-
-#sidebar-box:hover>#sidebar {
-   min-width: var(--uc-sidebar-hover-width) !important;
-   transition-delay: 0ms !important;
-}
-
-.sidebar-panel {
-   background-color: transparent !important;
-   color: var(--newtab-text-primary-color) !important;
-}
-
-.sidebar-panel #search-box {
-   -moz-appearance: none !important;
-   background-color: rgba(249, 249, 250, 0.1) !important;
-   color: inherit !important;
-}
-
-/* Add sidebar divider and give it background */
-
-#sidebar,
-#sidebar-header {
-   background-color: inherit !important;
-   /* 	border-inline: 1px solid rgb(80, 80, 80); */
-   border-inline-width: 0px 1px;
-}
-
-#sidebar-box:not([positionend])> :-moz-locale-dir(rtl),
-#sidebar-box[positionend]>* {
-   border-inline-width: 1px 0px;
-}
-
-/* Move statuspanel to the other side when sidebar is hovered so it doesn't get covered by sidebar */
-
-#sidebar-box:not([positionend]):hover~#appcontent #statuspanel {
-   inset-inline: auto 0px !important;
-}
-
-#sidebar-box:not([positionend]):hover~#appcontent #statuspanel-label {
-   margin-inline: 0px !important;
-   border-left-style: solid !important;
 }
 
 /* change color in private mode */
