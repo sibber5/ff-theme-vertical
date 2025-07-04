@@ -231,12 +231,12 @@
    border: 0 !important;
 }
 
-#navigator-toolbox {
-   border: 1 !important;
+toolbar#nav-bar > .titlebar-spacer[type="post-tabs"] {
+   width: 0 !important;
 }
 
-.titlebar-spacer[type="pre-tabs"] {
-   border: 0 !important;
+#navigator-toolbox {
+   border: 1 !important;
 }
 
 .tabbrowser-tab::after {
