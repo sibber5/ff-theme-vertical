@@ -106,13 +106,13 @@
    display: initial;
 }
 
-#urlbar-background {
+.urlbar-background {
    box-shadow: none !important;
    border-radius: 30px !important;
    background: var(--urlbar-bg) !important;
 }
 
-#urlbar[focused="true"] #urlbar-background {
+#urlbar[focused="true"] .urlbar-background {
    box-shadow: inset 1px 1px 1px 0px rgba(0, 0, 0, 0.35) !important;
    outline: none !important;
 }
@@ -122,7 +122,7 @@
 }
 
 /* Active Address/Search Field Dropdown */
-#urlbar[breakout][breakout-extend]>#urlbar-background {
+#urlbar[breakout][breakout-extend]>.urlbar-background {
    outline: none !important;
    box-shadow: none !important;
    background: var(--urldrop-bg) !important;
@@ -146,16 +146,16 @@
    border-bottom-right-radius: 0px !important;
 } */
 
-/* urlbar identity box buttons (lock/permissions/etc buttons) + addon page action buttons */
-.urlbar-addon-page-action,
+/* urlbar identity box buttons (lock/permissions/etc buttons) + page action buttons (buttons on the right: star, reader view toggle, addon buttons) */
+.urlbar-page-action,
 .identity-box-button {
-   margin: 1px 0 1px 1px;
+   margin: 1px;
    border-radius: 16px !important;
    height: var(--urlbar-buttons-height) !important;
    opacity: 0.8
 }
 
-.urlbar-addon-page-action:hover,
+.urlbar-page-action:hover,
 .identity-box-button:hover {
    cursor: pointer;
    /* background-color: var(--identity-btn-hover-color) !important; */
@@ -164,6 +164,11 @@
 .urlbar-icon {
    /* for some reason theres an extra 1px margin on top, so offset it so that the icon is centered */
    margin-top: -1px !important;
+}
+
+/* zoom button */
+#urlbar-zoom-button {
+   margin-inline: 2px !important; /* same as toolbarbutton's margin-left */
 }
 
 /* Search mode switcher */
@@ -208,19 +213,6 @@
    background-color: var(--identity-btn-hover-color) !important;
 }
 
-/* Star button */
-#star-button-box {
-   border-radius: 16px !important;
-   height: var(--urlbar-buttons-height) !important;
-   margin: auto !important;
-   margin-left: 1px !important;
-   margin-right: 1px !important;
-}
-
-#star-button-box {
-   cursor: pointer !important;
-}
-
 /* | Borders | */
 
 .tabbrowser-tab::after {
@@ -243,7 +235,7 @@ toolbar#nav-bar > .titlebar-spacer[type="post-tabs"] {
    border: 0 !important;
 }
 
-#urlbar-background {
+.urlbar-background {
    border: 0 !important;
 }
 
