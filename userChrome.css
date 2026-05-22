@@ -1,5 +1,5 @@
 /* Based on https://github.com/christorange/VerticalFox/blob/7eca918ef2bd70148f41b95f5bb917150e1094a2/windows/userChrome.css and modified
-   Licensed under MIT Copyright (c) 2024, 2025 Christol Yu, sibber (GitHub: sibber5) */
+   Licensed under MIT Copyright (c) 2024-2026 Christol Yu, sibber (GitHub: sibber5) */
 
 @import url(hide_tabs_toolbar_v2.css);
 @import url(autohide_sidebar.css);
@@ -147,14 +147,18 @@
 } */
 
 /* urlbar identity box buttons (lock/permissions/etc buttons) + page action buttons (buttons on the right: star, reader view toggle, addon buttons) */
+#trust-icon-container,
+#urlbar-revert-button-container,
 .urlbar-page-action,
 .identity-box-button {
    margin: 1px;
    border-radius: 16px !important;
    height: var(--urlbar-buttons-height) !important;
-   opacity: 0.8
+   opacity: 0.8;
 }
 
+#identity-icon-label:hover,
+#urlbar-revert-button-container:hover,
 .urlbar-page-action:hover,
 .identity-box-button:hover {
    cursor: pointer;
@@ -166,29 +170,54 @@
    margin-top: -1px !important;
 }
 
+/* the button is an image tag, so if we change its height (to var(--urlbar-buttons-height) above) the image will squish,
+   so instead we change the height of its container and apply the background color to it instead. */
+#urlbar-revert-button.urlbar-icon:hover {
+   background-color: transparent !important;
+}
+
+#urlbar-revert-button-container:hover {
+   /* set by default for #urlbar-revert-button in `.urlbar-page-action, .urlbar-revert-button, .urlbar-go-button, .search-go-button { &:not([disabled]):hover` in urlbar-searchbar.css */
+   background-color: var(--urlbar-box-background-color-hover);
+}
+
 /* zoom button */
 #urlbar-zoom-button {
    margin-inline: 2px !important; /* same as toolbarbutton's margin-left */
 }
 
 /* Search mode switcher */
-#urlbar-searchmode-switcher {
+/* TODO: figure out why theres another background */
+.searchmode-switcher
+.searchmode-switcher::before
+.searchmode-switcher::after {
+   background: transparent !important;
+   background-color: transparent !important;
+}
+
+.searchmode-switcher {
    margin: 1px 5px 1px 1px !important;
-   border-radius: 14px !important;
-   background-color: var(--bg) !important;
-   /* opacity: 0.8 */
+   /* style mox-buttom shadow DOM */
+   --button-border-radius: 14px !important;
+   --button-background-color: var(--bg) !important;
+   --button-background-color-hover: var(--identity-btn-hover-color) !important;
+   --button-background-color-active: var(--identity-btn-hover-color) !important;
+   --button-background-color-selected: var(--identity-btn-hover-color) !important;
+   opacity: 0.9;
 }
 
-#urlbar-searchmode-switcher:hover {
+.searchmode-switcher:hover {
    cursor: pointer;
-   background-color: var(--identity-btn-hover-color) !important;
+   /* background-color: var(--identity-btn-hover-color) !important; */
 }
 
-/* identity box */
+/* identity box ('firefox' button un urlbar on the left in about:profiels) + padlock (trust icon) */
+#trust-icon-container,
 #identity-icon-box.identity-box-button {
    background-color: var(--bg) !important;
 }
 
+#trust-icon-container:hover,
 #identity-icon-box.identity-box-button:hover {
    cursor: pointer;
    background-color: var(--identity-btn-hover-color) !important;
