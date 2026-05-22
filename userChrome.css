@@ -22,12 +22,12 @@
 
       --fullscreen-warn: rgb(25, 25, 25);
 
-      --arrowpanel-background: var(--urlbar-bg) !important;
+      --arrowpanel-background: var(--bg) !important;
+      --arrowpanel-border-color: rgb(55, 55, 55) !important;
       --button-hover-bgcolor: rgba(159, 159, 159, 0.35) !important;
       --button-active-bgcolor: rgba(255, 255, 255, .2) !important;
       --button-bgcolor: rgba(117, 117, 117, 0.9) !important;
       --toolbarbutton-icon-fill-opacity: 0.8 !important;
-      --arrowpanel-border-color: rgb(55, 55, 55) !important;
       --identity-btn-hover-color: rgba(255, 255, 255, 0.22) !important;
 
       --dark-menu-background-color: rgba(34, 34, 36, .5) !important;
@@ -69,7 +69,25 @@
    color: var(--bg) !important;
 }
 
+/* POPUP PANELS */
+
+:is(menupopup, panel) {
+   --panel-background: var(--arrowpanel-background) !important;
+   --panel-border-color: var(--arrowpanel-border-color) !important;
+   --panel-border-radius: 14px !important;
+   --panel-menuitem-border-radius: 8px !important;
+}
+
+/* right-click menu popups */
+#contentAreaContextMenu, #contentAreaContextMenu :is(menupopup, panel) {
+   --menuitem-border-radius: 10px !important;
+   /* Strip away the native hardcoded box rendering */
+   -moz-appearance: none !important;
+   appearance: none !important;
+}
+
 /* URL BAR */
+
 #urlbar {
    border-radius: 30px !important;
    border: 0 !important;
@@ -306,8 +324,7 @@ toolbarbutton:hover {
 }
 
 /* allign lefmost toolbar button with sidebar */
-
-toolbarbutton {
+#firefox-view-button {
    margin-left: 2px !important;
 }
 
