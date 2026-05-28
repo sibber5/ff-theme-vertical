@@ -36,7 +36,7 @@
    }
 }
 
-@media (prefers-color-scheme:light) {
+/* @media (prefers-color-scheme:light) {
    :root {
       --bg: #f1f5f9;
       --private-bg: #f1f5f9;
@@ -55,7 +55,7 @@
       --button-active-bgcolor: #cbd5e1 !important;
       --identity-btn-hover-color: white !important;
    }
-}
+} */
 
 /* Reduce flashing on load */
 #sidebar,
@@ -71,7 +71,7 @@
 
 /* POPUP PANELS */
 
-:is(menupopup, panel) {
+:is(menupopup, panel):not(#ContentSelectDropdownPopup, #PopupAutoComplete, #LoginAutocompletePopup, #datetime-popup) {
    --panel-background: var(--arrowpanel-background) !important;
    --panel-border-color: var(--arrowpanel-border-color) !important;
    --panel-border-radius: 14px !important;
